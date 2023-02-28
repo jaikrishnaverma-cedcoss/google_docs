@@ -77,7 +77,7 @@ export const Home = () => {
 
   // for update index hold when user want update
   const updateIndex = (index: number) => {
-    
+
     handleOpen();
     setObject({ ...state.document[index], index: index });
   };
@@ -146,7 +146,6 @@ export const Home = () => {
               sx={{ m: 1, width: "95%", marginBottom: "10px" }}
               maxRows={1}
               onChange={(e) => {
-                console.log(e.target.value);
                 setObject({ ...object, title: e.target.value });
               }}
               value={object.title}
@@ -159,7 +158,6 @@ export const Home = () => {
               sx={{ m: 1, width: "95%", marginBottom: "10px" }}
               maxRows={4}
               onChange={(e) => {
-                console.log(e.target.value);
                 setObject({ ...object, content: e.target.value });
               }}
               value={object.content}
