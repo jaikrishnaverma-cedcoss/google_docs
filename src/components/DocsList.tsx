@@ -8,7 +8,7 @@ import DeleteIcon from "@mui/icons-material/Delete";
 import Modal from "@mui/material/Modal";
 import HighlightOffIcon from "@mui/icons-material/HighlightOff";
 import { modalHeader, modalStyle } from "./Styles";
-// this component is responsible for view documents lisiting 
+// this component is responsible for view documents lisiting
 // and view modal for document text content
 const DocsList = ({
   updateIndex,
@@ -17,11 +17,11 @@ const DocsList = ({
 }) => {
   // get redux current state
   const state = useSelector((state: stateType) => state);
-//  dispatch function for call actions of reducers
+  //  dispatch function for call actions of reducers
   const dispatch = useDispatch();
   // responsible for content view modal
   const [open, setOpen] = React.useState(false);
-  // hold document index when user click on any document 
+  // hold document index when user click on any document
   const [index, setIndex] = useState(-1);
   // function for open modal
   const handleOpen = () => setOpen(true);
@@ -44,7 +44,8 @@ const DocsList = ({
           width: "100%",
         }}
       >
-        {state.document.map((item, index) => (
+        {state.document.length > 0 ? (
+          state.document.map((item, index) => (
             <Box
               key={item.id}
               sx={{
@@ -90,7 +91,17 @@ const DocsList = ({
                 </Button>
               </Box>
             </Box>
-        ))}
+          ))
+        ) : (
+          <Typography
+            sx={{ textAlign: "center", width: "100%", color: "grey" }}
+            id="keep-mounted-modal-title"
+            variant="h6"
+            component="p"
+          >
+            No Documents available
+          </Typography>
+        )}
       </Box>
       {/* modal given below to view document content */}
       <Modal
@@ -100,7 +111,14 @@ const DocsList = ({
         aria-labelledby="keep-mounted-modal-title"
         aria-describedby="keep-mounted-modal-description"
       >
-        <Box sx={{...modalStyle,width:'50%',minWidth:"300px",minHeight:"150px"}}>
+        <Box
+          sx={{
+            ...modalStyle,
+            width: "50%",
+            minWidth: "300px",
+            minHeight: "150px",
+          }}
+        >
           <Box sx={modalHeader}>
             <Typography
               sx={{ display: "inline" }}
